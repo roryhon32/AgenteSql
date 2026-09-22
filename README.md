@@ -10,11 +10,7 @@
 [![DuckDB](https://img.shields.io/badge/DuckDB-1.5-FFF000?style=for-the-badge&logo=duckdb&logoColor=black)](https://duckdb.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-<br>
-
 Transforme perguntas em linguagem natural em consultas SQL otimizadas para DuckDB — com interpretação de regras de negócio, validação de segurança e execução interativa dos resultados.
-
-<br>
 
 [Início Rápido](#-início-rápido) •
 [Arquitetura](#-arquitetura) •
@@ -39,32 +35,10 @@ O sistema conta com **memória conversacional** (sliding window), **validação 
 
 ## 🛠️ Tecnologias
 
-<table>
-  <tr>
-    <td align="center" width="140">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="48" height="48" alt="Python" />
-      <br><b>Python 3.13</b>
-      <br><sub>Linguagem principal</sub>
-    </td>
-    <td align="center" width="140">
-      <img src="https://avatars.githubusercontent.com/u/126733545?s=200&v=4" width="48" height="48" alt="LangChain" />
-      <br><b>LangChain</b>
-      <br><sub>Framework de agentes</sub>
-    </td>
-    <td align="center" width="140">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/openai.svg" width="48" height="48" alt="OpenAI" />
-      <br><b>OpenAI API</b>
-      <br><sub>LLM (GPT-4o-mini)</sub>
-    </td>
-    <td align="center" width="140">
-      <img src="https://duckdb.org/images/logo-dl/DuckDB_Logo-stacked.svg" width="48" height="48" alt="DuckDB" />
-      <br><b>DuckDB</b>
-      <br><sub>Engine SQL analítico</sub>
-    </td>
-  </tr>
-</table>
-
-### Dependências Principais
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=black)
 
 | Pacote | Versão | Função |
 |--------|--------|--------|
@@ -183,8 +157,8 @@ O sistema conta com **memória conversacional** (sliding window), **validação 
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/AgenteSQL.git
-cd AgenteSQL
+git clone https://github.com/roryhon32/AgenteSql.git
+cd AgenteSql
 
 # 2. Crie e ative o ambiente virtual
 python -m venv .venv
@@ -208,7 +182,7 @@ Crie um arquivo `.env` na raiz do projeto:
 
 ```env
 OPENAI_API_KEY=sk-sua-chave-aqui
-OPENAI_MODEL=gpt-4o-mini     # opcional, default: gpt-4o-mini
+OPENAI_MODEL=gpt-4o-mini
 ```
 
 ---
@@ -244,9 +218,8 @@ Processando com os agentes de IA (considerando contexto)...
 1. INTERPRETAÇÃO DE NEGÓCIO:
 ----------------------------------------
 TIPO DE ANÁLISE: ANÁLISE DE CLIENTES, CHURN
-INTENÇÃO: Identificar clientes cuja última compra ocorreu há 180 dias ou mais
+INTENÇÃO: Identificar clientes cuja última compra ocorreu há 180+ dias
 MÉTRICA: Faturamento (para priorização)
-FILTROS: ultima_compra <= CURRENT_DATE - INTERVAL '180 days'
 ...
 
 ----------------------------------------
@@ -309,8 +282,8 @@ AgenteSQL/
 │       │   └── conversation_memory.py   # Memória conversacional (sliding window)
 │       │
 │       ├── prompts/
-│       │   ├── interpreter_prompt.py    # Prompt do Agente Interpretador (~600 linhas)
-│       │   └── sql_prompt.py            # Prompt do Agente SQL (~370 linhas)
+│       │   ├── interpreter_prompt.py    # Prompt do Agente Interpretador
+│       │   └── sql_prompt.py            # Prompt do Agente SQL
 │       │
 │       ├── services/
 │       │   ├── orchestrator.py          # Orquestrador do pipeline
@@ -330,10 +303,10 @@ AgenteSQL/
 
 ## 🔧 Dados de Exemplo
 
-O executor DuckDB cria automaticamente uma tabela `usuarios` com dados de exemplo para testes:
+O executor DuckDB cria automaticamente uma tabela `usuarios` com dados de exemplo:
 
-| id | Cliente | idade | cidade | faturamento | data_cadastro | ultima_compra |
-|----|---------|-------|--------|-------------|---------------|---------------|
+| id | Cliente | idade | cidade | faturamento | data\_cadastro | ultima\_compra |
+|----|---------|-------|--------|-------------|----------------|----------------|
 | 1 | Carlos Silva | 42 | São Paulo | 12.500,50 | 2023-01-15 | ~200 dias atrás |
 | 2 | Mariana Souza | 31 | Rio de Janeiro | 8.900,00 | 2023-03-10 | ~120 dias atrás |
 | 3 | Fernando Castro | 55 | Belo Horizonte | 34.200,00 | 2022-11-05 | ~210 dias atrás |
@@ -396,7 +369,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 <div align="center">
 
-
+Feito com ❤️ e ☕ usando Python, LangChain e DuckDB
 
 </div>
 ]]>
