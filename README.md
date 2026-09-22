@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # AgenteSQL
 
@@ -48,65 +48,65 @@ Além disso, o sistema conta com memória conversacional (sliding window), valid
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        USUÁRIO                              │
-│              "Quais clientes estão inativos?"               │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
+│                        USUÁRIO                               │
+│              "Quais clientes estão inativos?"                │
+└──────────────────────────┬────────────────────────────────────┘
+                            │
+                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    ORQUESTRADOR                             │
-│              SQLAgentOrchestrator                           │
-│         (memória conversacional + catálogo)                 │
-└──────┬──────────────────────────────────────┬───────────────┘
+│                    ORQUESTRADOR                              │
+│              SQLAgentOrchestrator                            │
+│         (memória conversacional + catálogo)                  │
+└──────┬──────────────────────────────────────┬─────────────────┘
        │                                      │
        ▼                                      │
 ┌──────────────────────┐                      │
-│  AGENTE 1            │                      │
-│  Interpretador de    │                      │
-│  Negócio             │                      │
-│                      │                      │
-│  • Regras de negócio │                      │
-│  • Métricas          │                      │
-│  • Filtros           │                      │
-│  • Granularidade     │                      │
-└──────────┬───────────┘                      │
+│  AGENTE 1             │                     │
+│  Interpretador de     │                     │
+│  Negócio              │                     │
+│                       │                     │
+│  • Regras de negócio  │                     │
+│  • Métricas           │                     │
+│  • Filtros            │                     │
+│  • Granularidade      │                     │
+└──────────┬────────────┘                     │
            │ Especificação                    │
            │ Analítica                        │
            ▼                                  │
 ┌──────────────────────┐                      │
-│  AGENTE 2            │                      │
-│  Gerador SQL DuckDB  │                      │
-│                      │                      │
-│  • CTEs              │                      │
-│  • Funções DuckDB    │                      │
-│  • SQL Read-Only     │                      │
-└──────────┬───────────┘                      │
+│  AGENTE 2             │                     │
+│  Gerador SQL DuckDB   │                     │
+│                       │                     │
+│  • CTEs               │                     │
+│  • Funções DuckDB     │                     │
+│  • SQL Read-Only      │                     │
+└──────────┬────────────┘                     │
            │ SQL Bruto                        │
            ▼                                  │
 ┌──────────────────────┐                      │
-│  VALIDADOR           │                      │
+│  VALIDADOR            │                     │
 │  SQLSecurityValidator │                     │
-│                      │                      │
-│  • Apenas SELECT/WITH│                      │
-│  • Sem múltiplos stmt│                      │
-│  • Keywords proibidas│                      │
-└──────────┬───────────┘                      │
+│                       │                     │
+│  • Apenas SELECT/WITH │                     │
+│  • Sem múltiplos stmt │                     │
+│  • Keywords proibidas │                     │
+└──────────┬────────────┘                     │
            │ SQL Validado                     │
            ▼                                  ▼
 ┌──────────────────────┐       ┌──────────────────────┐
-│  MEMÓRIA             │       │  EXECUTOR            │
-│  ConversationMemory  │       │  DuckDBExecutor      │
-│                      │       │                      │
-│  • Sliding window    │       │  • In-memory DB      │
-│  • 5 turnos          │       │  • Dados de exemplo  │
-│  • Histórico p/LLM   │       │  • Execução segura   │
-└──────────────────────┘       └──────────┬───────────┘
-                                          │
-                                          ▼
-                               ┌──────────────────────┐
-                               │  RESULTADOS          │
-                               │  Tabela formatada    │
-                               └──────────────────────┘
+│  MEMÓRIA              │       │  EXECUTOR             │
+│  ConversationMemory   │       │  DuckDBExecutor       │
+│                       │       │                       │
+│  • Sliding window     │       │  • In-memory DB       │
+│  • 5 turnos           │       │  • Dados de exemplo   │
+│  • Histórico p/LLM    │       │  • Execução segura    │
+└───────────────────────┘       └──────────┬────────────┘
+                                            │
+                                            ▼
+                                 ┌──────────────────────┐
+                                 │  RESULTADOS           │
+                                 │  Tabela formatada     │
+                                 └──────────────────────┘
 ```
 
 ---
@@ -294,7 +294,7 @@ AgenteSQL/
 
 O executor DuckDB cria automaticamente uma tabela `usuarios` com dados de exemplo:
 
-| id | Cliente | idade | cidade | faturamento | data\_cadastro | ultima\_compra |
+| id | Cliente | idade | cidade | faturamento | data_cadastro | ultima_compra |
 |----|---------|-------|--------|-------------|----------------|----------------|
 | 1 | Carlos Silva | 42 | São Paulo | 12.500,50 | 2023-01-15 | ~200 dias atrás |
 | 2 | Mariana Souza | 31 | Rio de Janeiro | 8.900,00 | 2023-03-10 | ~120 dias atrás |
@@ -353,4 +353,3 @@ Contribuições são bem-vindas. Sinta-se à vontade para abrir issues e pull re
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-]]>
