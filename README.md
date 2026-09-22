@@ -1,6 +1,6 @@
 <![CDATA[<div align="center">
 
-# 🤖 AgenteSQL
+# AgenteSQL
 
 **Agente inteligente de Text-to-SQL com arquitetura multi-agente, memória conversacional e execução em DuckDB**
 
@@ -8,32 +8,27 @@
 [![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)](https://www.langchain.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
 [![DuckDB](https://img.shields.io/badge/DuckDB-1.5-FFF000?style=for-the-badge&logo=duckdb&logoColor=black)](https://duckdb.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 Transforme perguntas em linguagem natural em consultas SQL otimizadas para DuckDB — com interpretação de regras de negócio, validação de segurança e execução interativa dos resultados.
-
-[Início Rápido](#-início-rápido) •
-[Arquitetura](#-arquitetura) •
-[Funcionalidades](#-funcionalidades) •
-[Como Usar](#-como-usar) •
-[Estrutura do Projeto](#-estrutura-do-projeto)
 
 </div>
 
 ---
 
-## 📋 Descrição
+## Sobre o Projeto
 
-O **AgenteSQL** é um sistema multi-agente que converte perguntas em português feitas em linguagem natural em consultas SQL válidas para [DuckDB](https://duckdb.org/). O pipeline é composto por dois agentes especializados orquestrados em sequência:
+O **AgenteSQL** é um sistema multi-agente que converte perguntas em português, escritas em linguagem natural, em consultas SQL válidas para [DuckDB](https://duckdb.org/).
 
-1. **🧠 Agente Interpretador** — Analista de negócio que transforma a pergunta em uma especificação analítica estruturada
-2. **⚙️ Agente SQL** — Especialista em DuckDB que traduz a especificação em SQL válido e seguro
+O pipeline é composto por dois agentes especializados que trabalham em sequência:
 
-O sistema conta com **memória conversacional** (sliding window), **validação de segurança em profundidade** (apenas `SELECT`/`WITH`) e **execução interativa** dos resultados diretamente no DuckDB.
+1. **Agente Interpretador** — Um analista de negócio que transforma a pergunta do usuário em uma especificação analítica estruturada.
+2. **Agente SQL** — Um especialista em DuckDB que traduz essa especificação em uma consulta SQL válida e segura.
+
+Além disso, o sistema conta com memória conversacional (sliding window), validação de segurança em profundidade (permitindo apenas `SELECT`/`WITH`) e execução interativa dos resultados diretamente no DuckDB.
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
@@ -49,7 +44,7 @@ O sistema conta com **memória conversacional** (sliding window), **validação 
 
 ---
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -116,51 +111,51 @@ O sistema conta com **memória conversacional** (sliding window), **validação 
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-### 🧠 Interpretação Inteligente de Negócio
+### Interpretação Inteligente de Negócio
 - Entende linguagem comercial informal ("quem parou de comprar?", "onde estamos perdendo margem?")
-- Aplica regras de negócio automaticamente (cliente ativo/inativo/em risco)
-- Suporta 20+ tipos de análise: cohort, retenção, ranking, evolução temporal, etc.
+- Aplica regras de negócio automaticamente (cliente ativo, inativo, em risco)
+- Suporta mais de 20 tipos de análise: cohort, retenção, ranking, evolução temporal, entre outros
 
-### ⚙️ Geração de SQL Segura
-- Gera apenas consultas **read-only** (`SELECT` / `WITH ... SELECT`)
-- Validação em profundidade contra 20+ keywords proibidas (INSERT, DROP, DELETE, etc.)
+### Geração de SQL Segura
+- Gera apenas consultas read-only (`SELECT` / `WITH ... SELECT`)
+- Validação em profundidade contra mais de 20 keywords proibidas (INSERT, DROP, DELETE, etc.)
 - Proteção contra múltiplas instruções (SQL injection)
 - Limpeza automática de formatação markdown do LLM
 
-### 💬 Memória Conversacional
+### Memória Conversacional
 - Sliding window de 5 turnos para manter contexto entre perguntas
-- Permite perguntas de follow-up: "e agora filtre só por São Paulo"
-- Comandos para visualizar e limpar histórico
+- Permite perguntas de follow-up como "e agora filtre só por São Paulo"
+- Comandos para visualizar e limpar o histórico
 
-### 🦆 Execução Interativa no DuckDB
-- Após gerar a query, o usuário pode **escolher executá-la** no DuckDB
+### Execução Interativa no DuckDB
+- Após gerar a query, o usuário pode escolher executá-la no DuckDB
 - Banco em memória com dados de exemplo pré-carregados
 - Resultados formatados em tabela com colunas alinhadas
 
-### 🔒 Segurança em Profundidade
+### Segurança em Profundidade
 - Prompt engineering com restrições rígidas
 - Validação pós-geração no código Python
 - Apenas operações de leitura permitidas
 
 ---
 
-## 🚀 Início Rápido
+## Início Rápido
 
 ### Pré-requisitos
 
-- **Python 3.13+**
-- **Chave de API da OpenAI**
+- Python 3.13+
+- Chave de API da OpenAI
 
 ### Instalação
 
 ```bash
-# 1. Clone o repositório
+# Clone o repositório
 git clone https://github.com/roryhon32/AgenteSql.git
 cd AgenteSql
 
-# 2. Crie e ative o ambiente virtual
+# Crie e ative o ambiente virtual
 python -m venv .venv
 
 # Windows
@@ -169,10 +164,10 @@ python -m venv .venv
 # Linux/macOS
 source .venv/bin/activate
 
-# 3. Instale as dependências
+# Instale as dependências
 pip install langchain langchain-openai duckdb python-dotenv
 
-# 4. Configure a chave da OpenAI
+# Configure a chave da OpenAI
 echo "OPENAI_API_KEY=sk-sua-chave-aqui" > .env
 ```
 
@@ -187,7 +182,7 @@ OPENAI_MODEL=gpt-4o-mini
 
 ---
 
-## 💻 Como Usar
+## Como Usar
 
 ### CLI Interativa
 
@@ -258,7 +253,7 @@ Total: 2 registro(s) retornado(s).
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 AgenteSQL/
@@ -270,38 +265,32 @@ AgenteSQL/
 ├── src/
 │   └── sql_agent/
 │       ├── __init__.py                  # Exports do pacote
-│       │
 │       ├── config/
 │       │   └── settings.py              # Configurações centralizadas
-│       │
 │       ├── database/
 │       │   ├── schema.py                # Catálogo de schemas e metadados
 │       │   └── executor.py              # Executor seguro DuckDB
-│       │
 │       ├── memory/
-│       │   └── conversation_memory.py   # Memória conversacional (sliding window)
-│       │
+│       │   └── conversation_memory.py   # Memória conversacional
 │       ├── prompts/
 │       │   ├── interpreter_prompt.py    # Prompt do Agente Interpretador
 │       │   └── sql_prompt.py            # Prompt do Agente SQL
-│       │
 │       ├── services/
 │       │   ├── orchestrator.py          # Orquestrador do pipeline
 │       │   ├── interpreter_agent.py     # Agente 1: Interpretador de Negócio
 │       │   └── sql_generator_agent.py   # Agente 2: Gerador SQL
-│       │
 │       └── utils/
 │           └── validators.py            # Validador de segurança SQL
 │
 └── tests/
-    ├── test_schema.py                   # Testes do catálogo de schemas
-    ├── test_memory.py                   # Testes da memória conversacional
-    └── test_validator.py                # Testes do validador de segurança
+    ├── test_schema.py
+    ├── test_memory.py
+    └── test_validator.py
 ```
 
 ---
 
-## 🔧 Dados de Exemplo
+## Dados de Exemplo
 
 O executor DuckDB cria automaticamente uma tabela `usuarios` com dados de exemplo:
 
@@ -318,13 +307,13 @@ O executor DuckDB cria automaticamente uma tabela `usuarios` com dados de exempl
 
 | Classificação | Regra |
 |---------------|-------|
-| 🟢 **Ativo** | Última compra há menos de 90 dias |
-| 🟡 **Em Risco** | Última compra entre 90 e 179 dias |
-| 🔴 **Inativo** | Última compra há 180 dias ou mais |
+| **Ativo** | Última compra há menos de 90 dias |
+| **Em Risco** | Última compra entre 90 e 179 dias |
+| **Inativo** | Última compra há 180 dias ou mais |
 
 ---
 
-## 🧪 Testes
+## Testes
 
 ```bash
 # Executar todos os testes
@@ -338,7 +327,7 @@ python tests/test_memory.py
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Suporte a múltiplas tabelas e JOINs
 - [ ] Integração com arquivos CSV/Parquet via DuckDB
@@ -349,9 +338,9 @@ python tests/test_memory.py
 
 ---
 
-## 🤝 Contribuindo
+## Contribuindo
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+Contribuições são bem-vindas. Sinta-se à vontade para abrir issues e pull requests.
 
 1. Fork o projeto
 2. Crie sua branch (`git checkout -b feature/nova-funcionalidade`)
@@ -361,15 +350,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 
 ---
 
-## 📝 Licença
+## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-<div align="center">
-
-Feito com ❤️ e ☕ usando Python, LangChain e DuckDB
-
-</div>
 ]]>
