@@ -1,0 +1,27 @@
+database:
+  # Caminho do banco DuckDB. Use ":memory:" para banco em memória com dados de exemplo.
+  # Para usar um arquivo existente: "caminho/para/banco.duckdb"
+  db_path: ":memory:"
+
+  # Número máximo de linhas enviadas ao LLM para síntese da resposta
+  max_rows_context: 15
+
+  # Timeout máximo (em segundos) para execução de uma query
+  query_timeout: 30
+
+llm:
+  # Backend do LLM: "ollama" (local) ou "openai" (API externa)
+  backend: "ollama"
+
+  # Modelo Ollama a utilizar (requer `ollama pull qwen2.5-coder:7b`)
+  ollama_model: "qwen2.5-coder:7b"
+  ollama_base_url: "http://localhost:11434"
+
+  # Modelo OpenAI (utilizado quando backend = "openai")
+  openai_model: "gpt-4o-mini"
+
+  # Temperatura do LLM (0.0 = determinístico)
+  temperature: 0.0
+
+  # Máximo de tentativas de auto-recuperação em caso de erro SQL
+  max_retries: 2
